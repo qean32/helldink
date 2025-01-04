@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+
+<head>
+    <title>Redactor marshrutov</title>
+    <meta charset="utf-8">
+    <style>
+        body {
+            background-color: #333;
+        }
+
+        .container {
+            max-width: 1440px;
+            max-height: 900px;
+            margin: 0 auto;
+        }
+
+
+        .circle {
+            position: absolute;
+            z-index: 9;
+            width: 100px;
+            height: 100px;
+            background: red;
+            -moz-border-radius: 50px;
+            -webkit-border-radius: 50px;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="section">
+
+        <div class="container">
+
+
+            <div class="circle" id="circle">
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <script type="text/javascript">
+        let currentDroppable = null;
+
+        circle.onmousedown = function (event) {
+
+            let shiftX = event.clientX - circle.getBoundingClientRect().left;
+            let shiftY = event.clientY - circle.getBoundingClientRect().top;
+
+            circle.style.position = 'absolute';
+            circle.style.zIndex = 1000;
+            document.body.append(circle);
+
+            moveAt(event.pageX, event.pageY);
+
+            function moveAt(pageX, pageY) {
+                circle.style.left = pageX - shiftX + 'px';
+                circle.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event) {
+                moveAt(event.pageX, event.pageY);
+
+                circle.hidden = true;
+                let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+                circle.hidden = false;
+
+                if (!elemBelow) return;
+
+                let droppableBelow = elemBelow.closest('.droppable');
+                if (currentDroppable != droppableBelow) {
+                    if (currentDroppable) { // null when we were not over a droppable before this event
+                        leaveDroppable(currentDroppable);
+                    }
+                    currentDroppable = droppableBelow;
+                    if (currentDroppable) { // null if we're not coming over a droppable now
+                        // (maybe just left the droppable)
+                        enterDroppable(currentDroppable);
+                    }
+                }
+            }
+
+            document.addEventListener('mousemove', onMouseMove);
+
+            circle.onmouseup = function () {
+                document.removeEventListener('mousemove', onMouseMove);
+                circle.onmouseup = null;
+            };
+
+        };
+
+        function enterDroppable(elem) {
+            elem.style.background = 'pink';
+        }
+
+        function leaveDroppable(elem) {
+            elem.style.background = '';
+        }
+
+        circle.ondragstart = function () {
+            return false;
+        };
+    </script>
+</body>
+
+</html>

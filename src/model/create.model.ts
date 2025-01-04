@@ -1,4 +1,5 @@
-import { multiplierModel, positionModel } from "./core.model"
+import { Manufacture } from "../entities/core.entities"
+import { multiplierType, positionType } from "./core.model"
 
 
 export interface EntityInterface {
@@ -13,23 +14,19 @@ export interface CountryInterface extends EntityInterface {
 export interface TroopInterface extends EntityInterface {
     count: number
     country: number
-    experence: multiplierModel
+    experence: multiplierType
 }
 
 export interface ConstructionInterface extends EntityInterface {
     country: number
-    name: string
-    src_img: string
-    defeneMultiplier: multiplierModel
-    position: positionModel
+    position: positionType
 }
 
-export interface ProductionInterface extends ConstructionInterface {
-    country: number
-    town: number
-    name: string
-    src_img: string
-    defeneMultiplier: multiplierModel
-    position: positionModel
-    multiplier: multiplierModel
+export interface ManufactureInterface extends ConstructionInterface {
+    multiplier: multiplierType
+}
+
+export interface CastelInterface extends ConstructionInterface {
+    multiplierDef: multiplierType
+    manufacture: Manufacture[]
 }
