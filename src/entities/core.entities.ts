@@ -7,13 +7,13 @@ export class Game {
     id: number
     troops: Troop[]
     countres: Country[]
-
 }
 
 export class mapPoint {
     id: number
     multiplier: multiplierType
     position: positionType
+    is_live: boolean
 }
 
 export class Entity {
@@ -45,11 +45,44 @@ export class Construction extends Entity {
     position: positionType
 }
 
+type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] extends N
+    ? Acc[number]
+    : Enumerate<N, [...Acc, Acc['length']]>
+type Range<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>>
+type Range1to100 = Range<1, 100>
+
+export class kitFeatures extends Entity {
+    constructor(paylod) {
+        super(paylod)
+        this.is_live = true
+    }
+    loyalty: Range1to100
+    gold: number
+    food: number
+    stone: number
+    wood: number
+    is_live: boolean
+}
+
+export class Family extends kitFeatures {
+
+}
+
+export class Country extends kitFeatures {
+    constructor(paylod: CountryInterface) {
+        super(paylod)
+        this.color = paylod.color
+        this.is_live = true
+    }
+    color: string
+}
+
 export class Manufacture extends Construction {
     constructor(payload: ManufactureInterface) {
         super(payload)
         this.multiplier = payload.multiplier
     }
+    suzerain: number
     multiplier: multiplierType
 }
 
@@ -75,6 +108,7 @@ export class Castel extends Construction {
 }
 
 export class Vilage extends Construction {
+    multiplier: multiplierType
 }
 
 export class Troop extends Entity {
@@ -103,22 +137,31 @@ export class Troop extends Entity {
         this.multiplier == coredata.multiplier5 && swap(coredata.multiplier6)
     }
 
+    suzerain: number
     country: number
     count: number
     multiplier: multiplierType
 }
 
-
-
-export class Country extends Entity {
-    constructor(paylod: CountryInterface) {
-        super(paylod)
-        this.color = paylod.color
-        this.is_live = true
-    }
-    color: string
-    is_live: boolean
-    influence: number
-    gold: number
-    food: number
+export class Caravan extends Entity {
+    suzerain: number
+    country: number
+    products: any
+    count_type: number
 }
+
+export class TradeInviteBuy {
+    from: number
+    to: number
+    products: any
+    count_type: number
+}
+
+export class TradeInviteSale {
+    from: number
+    to: number
+    products: any
+    count_type: number
+}
+
+// возможность создания деревень\замков
