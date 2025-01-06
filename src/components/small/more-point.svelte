@@ -7,11 +7,11 @@
     for (let index = 0; index < countPoint; index++) {
         arr.push(index);
     }
-    
+
     import SeaPoint from "./sea-point.svelte";
 </script>
 
-<div class="bg-cyan-400 absolute" style="top: {top}rem; right: {right}rem">
+<div class="absolute" style="top: {top}rem; right: {right}rem">
     {#each arr as _, index}
         <SeaPoint />
     {/each}
