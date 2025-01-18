@@ -1,5 +1,5 @@
 <script>
-    import MorePoint from "../small/more-point.svelte";
+    import MorePoint from "../ui/more-point.svelte";
 </script>
 
 <MorePoint countPoint={7} top={24} right={0} />

@@ -1,5 +1,5 @@
 import { Manufacture } from "../entities/core.entities"
-import { multiplierType, positionType } from "./core.type"
+import type { multiplierType, positionType } from "./core.type"
 
 
 export interface EntityInterface {
@@ -15,6 +15,7 @@ export interface TroopInterface extends EntityInterface {
     count: number
     country: number
     experence: multiplierType
+    position: positionType;
 }
 
 export interface ConstructionInterface extends EntityInterface {
@@ -26,7 +27,7 @@ export interface ManufactureInterface extends ConstructionInterface {
     multiplier: multiplierType
 }
 
-export interface CastelInterface extends ConstructionInterface {
+export interface CastleInterface extends ConstructionInterface {
     multiplierDef: multiplierType
-    manufacture: Manufacture[]
+    manufacture: Manufacture[] | null
 }

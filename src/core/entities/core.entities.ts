@@ -1,6 +1,6 @@
 import { generateID } from "../../function/generateNumber"
 import type { multiplierType, positionType } from "../model/core.type"
-import type { ConstructionInterface, CountryInterface, ManufactureInterface, CastelInterface, TroopInterface } from "../model/type.payload"
+import type { ConstructionInterface, CountryInterface, ManufactureInterface, CastleInterface, TroopInterface } from "../model/type.payload"
 import * as coredata from '../data/core.data'
 
 export class Game {
@@ -32,6 +32,7 @@ export class Entity {
     src_img: string
     name: string
     selected: boolean
+    position!: positionType;
 
     Select() {
         this.selected = !this.selected
@@ -91,14 +92,14 @@ export class Manufacture extends Construction {
     multiplier: multiplierType
 }
 
-export class Castel extends Construction {
-    constructor(payload: CastelInterface) {
+export class Castle extends Construction {
+    constructor(payload: CastleInterface) {
         super(payload)
         this.manufacture = payload.manufacture
         this.multiplierDef = payload.multiplierDef
     }
     multiplierDef: multiplierType
-    manufacture: Manufacture[]
+    manufacture?: Manufacture[] | null
 
     GetNextMultiplier() {
         const swap = (multiplier: multiplierType) => {
@@ -117,10 +118,11 @@ export class Vilage extends Construction {
 }
 
 export class Troop extends Entity {
-    constructor(payload: TroopInterface) {
+    constructor(payload: TroopInterface & { position: positionType }) {
         super(payload)
         this.country = payload.country
         this.count = payload.count
+        this.position = payload.position
     }
 
     SwapCountry(country: number) {
