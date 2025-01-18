@@ -14,8 +14,9 @@
     const selected = selectedObjectStore.subscribe((value) => {
         obj = value;
     });
-    const click = () => {
-    };
+    const click = () => {};
+
+    // <!-- aasd-->
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
