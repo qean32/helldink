@@ -1,17 +1,39 @@
 <script lang="ts">
-    import Troop from "../../components/ui/troop.svelte";
-    import type { TroopInterface } from "../../core/model/type.payload";
-    const troop_: TroopInterface = {
-        country: 1,
-        count: 40,
-        experence: 0.3,
-        name: "./fortess.svg",
-        src_img: "wolf.svg",
-        position: { x: 760, y: 1050 },
-    };
+    export let data: any;
+    import { Troop, Map, Castle } from "../../components/ui";
 </script>
 
 <main>
-    <img src="./map/map.webp" />
-    <Troop {troop_} />
+    <p class="absolute">game: {data.slug}</p>
+    <Map />
+    <Troop
+        troop_={{
+            country: 1,
+            count: 410,
+            experence: 0.3,
+            name: "./fortess.svg",
+            src_img: "deer.svg",
+            position: { x: 600, y: 750 },
+        }}
+    />
+    <Troop
+        troop_={{
+            country: 1,
+            count: 700,
+            experence: 0.3,
+            name: "./fortess.svg",
+            src_img: "horse.svg",
+            position: { x: 400, y: 600 },
+        }}
+    />
+    <Castle
+        castel_={{
+            country: 1,
+            manufacture: null,
+            multiplierDef: 0.3,
+            name: "sa",
+            position: { x: 460, y: 640 },
+            src_img: "fortess.svg",
+        }}
+    />
 </main>

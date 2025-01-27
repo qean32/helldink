@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* img { */
+    /* max-width: none; */
+/* } */
+
+/* * { */
+    /* overflow: auto; */
+    /* -ms-overflow-style: none; */
+    /* scrollbar-width: none; */
+    /* overscroll-behavior: none; */
+/* } */

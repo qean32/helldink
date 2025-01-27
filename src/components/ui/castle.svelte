@@ -1,22 +1,41 @@
-<script>
+<script lang="ts">
+    import { selectObj } from "$lib/selectObj";
+
     import { Castle } from "../../core/entities/core.entities";
-
-    export let castel;
-
-    const castel_ = new Castle(castel);
+    import type { CastleInterface } from "../../core/model/type.payload";
+    export let castel_: CastleInterface;
+    const castel = new Castle(castel_);
 </script>
 
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-    class={`w-[56px] h-[56px] z-10 absolute`}
-    style={`top: ${castel.position.x}px; left: ${castel.position.y}px`}
+    class={`absolute flex justify-center cursor-pointer`}
+    style={`top: ${castel.position.y}px; left: ${castel.position.x}px;`}
+    onclick={() => {
+        castel.selected = !castel.selected;
+        selectObj(castel);
+    }}
 >
+    <!-- svelte-ignore a11y_click_events_have_key_events -->
+    <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
     <img
-        src={`./emblems/${castel_.src_img}`}
+        src={`./other/${castel.src_img}`}
         alt=""
-        class="w-16 absolute"
-        onclick={(castel_.selected = !castel_.selected)}
+        class="w-14"
     />
-    {#if castel_.selected}
-        <img src={"./select.svg"} class="w-[70px]" />
+    <p
+        class="text-1xl absolute bottom-1 pl-5 text-white"
+        style="font-weight: bold;"
+    >
+        <!-- {castel.count} -->
+    </p>
+    {#if castel.selected}
+        <!-- svelte-ignore a11y_missing_attribute -->
+        <img
+            src={"./other/select.svg"}
+            class="absolute"
+            style="transform: scale(1.8); width: 100%;"
+        />
     {/if}
 </div>

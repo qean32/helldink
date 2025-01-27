@@ -7,7 +7,7 @@ function roundnum(num: number): number {
     return Math.round(num / 50) * 50;
 }
 
-const road = (startPosition: positionType, endPosition: positionType): positionType[] => {
+export const road = (startPosition: positionType, endPosition: positionType): positionType[] => {
     let fakeStart: positionType = { x: roundnum(startPosition.x), y: roundnum(startPosition.y) }
     let fakeEnd: positionType = { x: roundnum(endPosition.x), y: roundnum(endPosition.y) }
 
