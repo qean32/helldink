@@ -5,20 +5,23 @@
     import { io } from "socket.io-client";
 
     const socket = io();
+    console.log(data)
+    socket.emit("join", { name: "123123", room: data.slug });
+    const go = () => {
+        socket.emit("createMessage", {
+            user: "123123",
+            room: data.slug,
+            text: "121312wqwqe",
+        });
+    };
 
-    socket.on("news", function (message: any) {
-        console.log(message);
-    });
-    socket.emit("my other event", { my: "data" });
-    socket.emit("my other event", { my: "data___" });
-
-    socket.on("my other event", function (message: any) {
+    socket.on("newMessage", function (message) {
         console.log(message);
     });
 </script>
 
 <main>
-    <p class="absolute">game: {data.slug}</p>
+    <p class="absolute" onclick={go}>game: {data.slug}</p>
     <Map />
     <Troop
         troop_={{

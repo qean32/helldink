@@ -1,7 +1,9 @@
 import { sveltekit } from '@sveltejs/kit/vite'
 import { type ViteDevServer, defineConfig } from 'vite'
+import fs from 'fs'
 
 import { Server } from 'socket.io'
+import { EmitNames, EmitTypes } from './src/core/emites/'
 
 const webSocketServer = {
 	name: 'webSocketServer',
@@ -11,14 +13,26 @@ const webSocketServer = {
 		const io = new Server(server.httpServer)
 
 		io.sockets.on('connection', function (socket) {
-			socket.send('hi');
-			socket.emit('news', { hello: 'world' });
-			socket.on('my other event', function (data) {
-				console.log(data);
-			});
-			socket.emit('my other event', function (data: any) {
-				console.log(data);
-			});
+			console.log("A new user just connected");
+
+			socket.on('join', (game: EmitTypes.GameType) => {
+				if (!game.id) {
+					return console.log('no game!!!');
+				}
+				socket.join(game.id);
+				const data = fs.readFileSync(`./data/games/${game.id}.json`, { encoding: 'utf8', flag: 'r' })
+
+				if (data) {
+					return console.log('no game!!!');
+				}
+				socket.emit(EmitNames.ConnectGameEmit, JSON.parse(data))
+			})
+
+			socket.on(EmitNames.MoveTroopEmit, (message) => {
+				if (message.user && (message.text)) {
+					io.to(message.room).emit('newMessage', {});
+				}
+			})
 		});
 	}
 }
