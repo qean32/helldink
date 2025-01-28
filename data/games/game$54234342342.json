@@ -1,0 +1,16 @@
+{
+    "game": {
+        "id": "",
+        "pouse": true
+    },
+    "troops": [],
+    "castles": [],
+    "historystep": {
+        "troops": [],
+        "castles": []
+    },
+    "step": {
+        "troops": [],
+        "castles": []
+    }
+}

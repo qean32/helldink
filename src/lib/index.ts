@@ -1,5 +1,0 @@
-export { generateID } from './generateNumber'
-export { road } from './move'
-export { selectObj } from './selectObj'
-// export * as page from './...page.ts'
-import '../app.css'

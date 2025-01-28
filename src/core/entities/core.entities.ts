@@ -1,7 +1,7 @@
-import { generateID } from "../../lib/generateNumber"
 import type { multiplierType, positionType } from "../model/core.type"
 import type { ConstructionInterface, CountryInterface, ManufactureInterface, CastleInterface, TroopInterface } from "../model/type.payload"
-import * as coredata from '../data/core.data'
+import * as coredata from '../model/core.type'
+import { generateID } from "../../components/lib";
 
 export class Game {
     constructor(paylod: { troops: any; countres: any }) {

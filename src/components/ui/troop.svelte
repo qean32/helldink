@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { selectObj } from "$lib";
     import { Troop } from "../../core/entities/core.entities";
     import type { TroopInterface } from "../../core/model/type.payload";
+    import { selectObj } from "../lib";
 
     export let troop_: TroopInterface;
 

@@ -1,9 +1,9 @@
 import { sveltekit } from '@sveltejs/kit/vite'
 import { type ViteDevServer, defineConfig } from 'vite'
-import fs from 'fs'
 
 import { Server } from 'socket.io'
 import { EmitNames, EmitTypes } from './src/core/emites/'
+import { GetGameData, road } from './src/components/lib'
 
 const webSocketServer = {
 	name: 'webSocketServer',
@@ -15,23 +15,23 @@ const webSocketServer = {
 		io.sockets.on('connection', function (socket) {
 			console.log("A new user just connected");
 
-			socket.on('join', (game: EmitTypes.GameType) => {
-				if (!game.id) {
-					return console.log('no game!!!');
-				}
-				socket.join(game.id);
-				const data = fs.readFileSync(`./data/games/${game.id}.json`, { encoding: 'utf8', flag: 'r' })
+			socket.on(EmitNames.Tik, () => {
+				// 54234342342
+				const data = GetGameData(54234342342)
+			})
 
-				if (data) {
-					return console.log('no game!!!');
-				}
+			socket.on('join', (game: EmitTypes.GameType) => {
+				socket.join(game.id);
+				const data = GetGameData(game.id)
+
 				socket.emit(EmitNames.ConnectGameEmit, JSON.parse(data))
 			})
 
-			socket.on(EmitNames.MoveTroopEmit, (message) => {
-				if (message.user && (message.text)) {
-					io.to(message.room).emit('newMessage', {});
-				}
+			socket.on(EmitNames.MoveTroopEmit, (move: EmitTypes.MoveTroopTypeEmit) => {
+				const data = GetGameData(move.idGame)
+
+				const way = road(move.startPosition, move.endPosition)
+				data
 			})
 		});
 	}

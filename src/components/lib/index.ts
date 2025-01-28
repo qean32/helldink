@@ -1,0 +1,5 @@
+export { generateID } from './generate-number'
+export { road } from './move'
+export { selectObj } from './select-obj'
+export { GetGameData } from './get-game-data'
+// import '../app.css'
