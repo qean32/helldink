@@ -1,6 +1,20 @@
 <script lang="ts">
     export let data: any;
     import { Troop, Map, Castle } from "../../components/ui";
+
+    import { io } from "socket.io-client";
+
+    const socket = io();
+
+    socket.on("news", function (message: any) {
+        console.log(message);
+    });
+    socket.emit("my other event", { my: "data" });
+    socket.emit("my other event", { my: "data___" });
+
+    socket.on("my other event", function (message: any) {
+        console.log(message);
+    });
 </script>
 
 <main>
