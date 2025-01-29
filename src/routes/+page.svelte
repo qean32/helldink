@@ -1,5 +1,6 @@
 <script lang="ts">
     import { Troop, Map } from "../components/ui";
+    import '../app.css'
 </script>
 
 <main>

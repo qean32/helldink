@@ -1,27 +1,13 @@
 <script lang="ts">
     export let data: any;
+    import '../../app.css'
     import { Troop, Map, Castle } from "../../components/ui";
-
-    import { io } from "socket.io-client";
-
-    const socket = io();
-    console.log(data)
-    socket.emit("join", { name: "123123", room: data.slug });
-    const go = () => {
-        socket.emit("createMessage", {
-            user: "123123",
-            room: data.slug,
-            text: "121312wqwqe",
-        });
-    };
-
-    socket.on("newMessage", function (message) {
-        console.log(message);
-    });
 </script>
 
 <main>
-    <p class="absolute" onclick={go}>game: {data.slug}</p>
+    <!-- svelte-ignore a11y_click_events_have_key_events -->
+    <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+    <p class="absolute">game: {data.slug}</p>
     <Map />
     <Troop
         troop_={{

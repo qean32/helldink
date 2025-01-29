@@ -9,13 +9,24 @@ export type GameDataType = {
     troops: Troop[],
     castles: Castle[],
     historystep: {
-        troops: Troop[],
+        troops: MoveEmit[],
         castles: Castle[],
     },
     step: {
-        troops: Troop[],
+        troops: StepTroop[],
         castles: Castle[],
     }
+}
+
+type MoveEmit = {
+    way: positionType[],
+    idTroop: number
+    currentStep: number
+}
+
+type StepTroop = {
+    position: positionType,
+    idTroop: number
 }
 
 export type GameType = {

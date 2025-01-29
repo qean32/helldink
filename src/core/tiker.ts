@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import { EmitNames } from "./emites";
 
-const socket = io('ws://localhost:5173/');
+const socket = io(`ws://${process.env.currentDomen || 'localhost:5173/'}`);
 
 setInterval(() => {
     console.log('tik')
