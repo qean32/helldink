@@ -2,8 +2,9 @@ import { sveltekit } from '@sveltejs/kit/vite'
 import { type ViteDevServer, defineConfig } from 'vite'
 
 import { Server } from 'socket.io'
+import { MoveTroopFn, TikFn } from './emit-lib/'
 import { EmitNames, EmitTypes } from './src/core/emites/'
-import { GetGameData, road, WriteGameData } from './src/components/lib'
+import { GetGameData } from './src/components/lib'
 
 const webSocketServer = {
 	name: 'webSocketServer',
@@ -13,58 +14,18 @@ const webSocketServer = {
 		const io = new Server(server.httpServer)
 
 		io.sockets.on('connection', function (socket) {
-			console.log("A new user just connected");
-
-			socket.on(EmitNames.Tik, () => {
-				const data = GetGameData(54234342342)
-
-				data.step.troops = []
-
-				data.historystep.troops.forEach(({ currentStep, idTroop, way }, index) => {
-					if (currentStep == way.length + 1) {
-						data.historystep.troops = data.historystep.troops.slice(index, 1)
-					}
-					data.historystep.troops[index].currentStep += 1
-					data.step.troops = [...data.step.troops, {
-						idTroop: idTroop,
-						position: way[currentStep],
-					}]
-				})
-
-				WriteGameData(54234342342, data)
-			})
-
-			socket.on('join', (game: EmitTypes.GameType) => {
+			socket.on(EmitNames.JoinEmit, (game: EmitTypes.GameType) => {
 				socket.join(game.id);
 				const data = GetGameData(game.id)
-
 				socket.emit(EmitNames.ConnectGameEmit, data)
 			})
 
+			socket.on(EmitNames.Tik, () => {
+				TikFn(socket)
+			})
+
 			socket.on(EmitNames.MoveTroopEmit, (move: EmitTypes.MoveTroopTypeEmit) => {
-				if (move) {
-					const data = GetGameData(move.idGame)
-
-					const way = road(move.startPosition, move.endPosition)
-					let indexMove = data.historystep.troops.find((item) => item.idTroop == move.idTroop)
-
-					if (indexMove) {
-						indexMove = {
-							way,
-							currentStep: 0,
-							idTroop: move.idTroop
-						}
-						return
-					}
-
-					data.historystep.troops = [...data.historystep.troops, {
-						way,
-						currentStep: 0,
-						idTroop: move.idTroop
-					}]
-
-					WriteGameData(move.idGame, data)
-				}
+				MoveTroopFn(move)
 			})
 		});
 	}

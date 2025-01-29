@@ -5,24 +5,17 @@
 
     const socket = io();
     export const indexMap: number = 1;
-    // let data: { slug: 54234342342 };
-
-    socket.emit("join", {
-        pause: false,
-        id: "54234342342",
-    });
-
     let selected_obj: any;
-
-    const selected = selectedObjectStore.subscribe((value) => {
+    selectedObjectStore.subscribe((value) => {
         selected_obj = value;
     });
-    const click = () => {
+
+    const click = (e: any) => {
         console.log(selected_obj)
         if (selected_obj.position) {
             socket.emit(EmitNames.MoveTroopEmit, {
-                startPosition: { x: 1000, y: 700 },
-                endPosition: { x: 1900, y: 1500 },
+                startPosition: { x: selected_obj.position.x, y: selected_obj.position.y },
+                endPosition: { x: e.clientX, y: e.clientY },
                 idGame: "54234342342",
                 idTroop: selected_obj.id,
             } as EmitTypes.MoveTroopTypeEmit);

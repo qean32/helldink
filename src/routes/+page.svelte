@@ -1,28 +1,31 @@
 <script lang="ts">
     import { Troop, Map } from "../components/ui";
-    import '../app.css'
+    import "../app.css";
+    import type { TroopInterface } from "../core/model/type.payload";
+    import { io } from "socket.io-client";
+    import { EmitNames } from "../core/emites";
+    import type { GameDataType } from "../core/emites/types";
+
+    let troop_: any;
+    const socket = io();
+    socket.emit(EmitNames.JoinEmit, {
+        pause: false,
+        id: "54234342342",
+    });
+
+    socket.on(EmitNames.ConnectGameEmit, (data: GameDataType) => {
+        if (data.game) {
+            troop_ = data.troops[0];
+        }
+    });
+    socket.on(EmitNames.MoveTroopEmit_, (data) => {
+        if (data.position) {
+            troop_.position = data.position;
+        }
+    });
 </script>
 
 <main>
     <Map />
-    <Troop
-        troop_={{
-            country: 1,
-            count: 410,
-            experence: 0.3,
-            name: "./fortess.svg",
-            src_img: "deer.svg",
-            position: { x: 760, y: 1030 },
-        }}
-    />
-    <Troop
-        troop_={{
-            country: 1,
-            count: 700,
-            experence: 0.3,
-            name: "./fortess.svg",
-            src_img: "horse.svg",
-            position: { x: 760, y: 1250 },
-        }}
-    />
+    <Troop troop={troop_} />
 </main>
