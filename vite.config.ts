@@ -18,11 +18,16 @@ const webSocketServer = {
 			socket.on(EmitNames.Tik, () => {
 				const data = GetGameData(54234342342)
 
-				data.historystep.troops.forEach((item) => {
-					item.currentStep += 1
+				data.step.troops = []
+
+				data.historystep.troops.forEach(({ currentStep, idTroop, way }, index) => {
+					if (currentStep == way.length + 1) {
+						data.historystep.troops = data.historystep.troops.slice(index, 1)
+					}
+					data.historystep.troops[index].currentStep += 1
 					data.step.troops = [...data.step.troops, {
-						idTroop: item.idTroop,
-						position: item.way[item.currentStep],
+						idTroop: idTroop,
+						position: way[currentStep],
 					}]
 				})
 

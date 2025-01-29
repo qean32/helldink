@@ -6,4 +6,4 @@ const socket = io(`ws://${process.env.currentDomen || 'localhost:5173/'}`);
 setInterval(() => {
     console.log('tik')
     socket.emit(EmitNames.Tik);
-}, 5000)
+}, 1000)

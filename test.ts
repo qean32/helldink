@@ -1,6 +1,6 @@
 const data = {
     game: {
-        id: 23131,
+        id: 324324,
         pouse: true
     },
     troops: [],
@@ -146,27 +146,22 @@ const data = {
                         y: 1500
                     }
                 ],
-                currentStep: 0,
+                currentStep: 5,
                 idTroop: 8953
             }
         ],
         castles: []
     },
     step: {
-        troops: [],
+        troops: [
+            {
+                idTroop: 8953,
+                position: {
+                    x: 1200,
+                    y: 750
+                }
+            }
+        ],
         castles: []
     }
 }
-
-
-
-
-data.historystep.troops.forEach((item) => {
-    item.currentStep += 1
-    data.step.troops = [...data.step.troops, {
-        idTroop: item.idTroop,
-        position: item.way[item.currentStep]
-    }]
-})
-
-console.log(data.step.troops)

@@ -146,7 +146,7 @@
                         "y": 1500
                     }
                 ],
-                "currentStep": 4,
+                "currentStep": 5,
                 "idTroop": 8953
             }
         ],
@@ -154,27 +154,6 @@
     },
     "step": {
         "troops": [
-            {
-                "idTroop": 8953,
-                "position": {
-                    "x": 1100,
-                    "y": 700
-                }
-            },
-            {
-                "idTroop": 8953,
-                "position": {
-                    "x": 1150,
-                    "y": 700
-                }
-            },
-            {
-                "idTroop": 8953,
-                "position": {
-                    "x": 1150,
-                    "y": 750
-                }
-            },
             {
                 "idTroop": 8953,
                 "position": {
