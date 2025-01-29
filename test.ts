@@ -14,139 +14,15 @@ const data = {
                         y: 700
                     },
                     {
-                        x: 1100,
+                        x: 1050,
                         y: 700
                     },
                     {
-                        x: 1150,
+                        x: 1050,
                         y: 700
                     },
-                    {
-                        x: 1150,
-                        y: 750
-                    },
-                    {
-                        x: 1200,
-                        y: 750
-                    },
-                    {
-                        x: 1200,
-                        y: 800
-                    },
-                    {
-                        x: 1250,
-                        y: 800
-                    },
-                    {
-                        x: 1250,
-                        y: 850
-                    },
-                    {
-                        x: 1300,
-                        y: 850
-                    },
-                    {
-                        x: 1300,
-                        y: 900
-                    },
-                    {
-                        x: 1350,
-                        y: 900
-                    },
-                    {
-                        x: 1400,
-                        y: 900
-                    },
-                    {
-                        x: 1450,
-                        y: 900
-                    },
-                    {
-                        x: 1450,
-                        y: 950
-                    },
-                    {
-                        x: 1500,
-                        y: 950
-                    },
-                    {
-                        x: 1500,
-                        y: 1000
-                    },
-                    {
-                        x: 1550,
-                        y: 1000
-                    },
-                    {
-                        x: 1550,
-                        y: 1050
-                    },
-                    {
-                        x: 1550,
-                        y: 1100
-                    },
-                    {
-                        x: 1550,
-                        y: 1150
-                    },
-                    {
-                        x: 1600,
-                        y: 1150
-                    },
-                    {
-                        x: 1650,
-                        y: 1150
-                    },
-                    {
-                        x: 1650,
-                        y: 1200
-                    },
-                    {
-                        x: 1650,
-                        y: 1250
-                    },
-                    {
-                        x: 1650,
-                        y: 1300
-                    },
-                    {
-                        x: 1650,
-                        y: 1350
-                    },
-                    {
-                        x: 1650,
-                        y: 1400
-                    },
-                    {
-                        x: 1650,
-                        y: 1450
-                    },
-                    {
-                        x: 1700,
-                        y: 1450
-                    },
-                    {
-                        x: 1700,
-                        y: 1500
-                    },
-                    {
-                        x: 1750,
-                        y: 1500
-                    },
-                    {
-                        x: 1800,
-                        y: 1500
-                    },
-                    {
-                        x: 1850,
-                        y: 1500
-                    },
-                    {
-                        x: 1900,
-                        y: 1500
-                    }
                 ],
-                currentStep: 5,
+                currentStep: 1,
                 idTroop: 8953
             }
         ],
@@ -165,3 +41,21 @@ const data = {
         castles: []
     }
 }
+
+
+
+
+data.historystep.troops.forEach(({ currentStep, idTroop, way }, index) => {
+    data.historystep.troops[index].currentStep += 1
+    data.step.troops = [...data.step.troops, {
+        idTroop: idTroop,
+        position: way[currentStep],
+    }]
+
+    if (data.historystep.troops[index].currentStep == way.length + 1) {
+        data.historystep.troops = data.historystep.troops.filter((elem, index_) => index_ !== index)
+        return
+    }
+})
+
+console.log(data)

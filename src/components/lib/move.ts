@@ -17,15 +17,25 @@ export const road = (startPosition: positionType, endPosition: positionType): po
         const rnd = Math.round(Math.random() * (2 - 1) + 1)
 
         if (rnd == 1 && fakeStart.x != fakeEnd.x) {
-            fakeStart = { x: fakeStart.x + 50, y: fakeStart.y }
+            if (fakeEnd.x < fakeStart.x) {
+                fakeStart = { x: fakeStart.x - 50, y: fakeStart.y }
+            } else {
+                fakeStart = { x: fakeStart.x + 50, y: fakeStart.y }
+            }
             returnArr.push({ x: fakeStart.x, y: fakeStart.y })
         }
 
         if (rnd == 2 && fakeStart.y != fakeEnd.y) {
-            fakeStart = { x: fakeStart.x, y: fakeStart.y + 50 }
+            if (fakeEnd.y < fakeStart.y) {
+                fakeStart = { y: fakeStart.y - 50, x: fakeStart.x }
+            } else {
+                fakeStart = { y: fakeStart.y + 50, x: fakeStart.x }
+            }
             returnArr.push({ x: fakeStart.x, y: fakeStart.y })
         }
     }
 
     return returnArr
 }
+
+console.log(road({x: 500, y: 600}, {x: 200, y: 200}))
