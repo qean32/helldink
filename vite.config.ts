@@ -2,9 +2,9 @@ import { sveltekit } from '@sveltejs/kit/vite'
 import { type ViteDevServer, defineConfig } from 'vite'
 
 import { Server } from 'socket.io'
-import { JoinFn, MoveTroopFn, TikFn } from './emit-lib/'
+import { CreateEntity, JoinFn, MoveTroopFn, TikFn } from './emit-lib/'
 import { EmitNames, EmitTypes } from './src/core/emites/'
-import { GetGameData, road, WriteGameData } from './src/components/lib'
+import type { EntityPayloadType } from './emit-lib/cteate-entity'
 
 const webSocketServer = {
 	name: 'webSocketServer',
@@ -16,6 +16,7 @@ const webSocketServer = {
 			socket.on(EmitNames.JoinEmit, (gameId) => JoinFn(socket, gameId))
 			socket.on(EmitNames.Tik, () => TikFn(socket))
 			socket.on(EmitNames.MoveTroopEmit, (move: EmitTypes.MoveTroopTypeEmit) => MoveTroopFn(move))
+			socket.on(EmitNames.CrateEntity, ({ payload, entity, gameId }: { payload: any, entity: EntityPayloadType, gameId: string | number }) => CreateEntity(socket, { payload, entity, gameId }))
 
 
 		});

@@ -1,5 +1,5 @@
 export { generateID } from './generate-number'
-export { road } from './move'
+export { road } from './road'
 export { selectObj } from './select-obj'
 export { GetGameData } from './get-game-data'
 export { WriteGameData } from './write-game-data'

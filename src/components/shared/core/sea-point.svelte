@@ -1,14 +1,15 @@
 <script>
     import { selectedObjectStore } from "../../store/selectedObjecnStore";
+    let points = [];
 
-    let obj;
-
-    const selected = selectedObjectStore.subscribe((value) => {
-        obj = value;
-    });
-    const click = () => {
-        console.log(obj);
-    };
+    for (let index = 0; index < 100; index++) {
+        points = [...points, {}];
+    }
 </script>
 
-<div on:click={click} class="w-[40px] h-[20px]"></div>
+<div class="absolute flex flex-wrap" style="width: 100%; height: 100%;">
+    {#each points as point}
+        <div class="w-[50px] h-[50px] bg-red-400"></div>
+        <div class="w-[50px] h-[50px] bg-red-400"></div>
+    {/each}
+</div>

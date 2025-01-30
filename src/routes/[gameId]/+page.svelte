@@ -9,27 +9,62 @@
     import { EmitNames } from "../../core/emites";
     import "../../app.css";
     import type { GameDataType } from "../../core/emites/types";
+    import SeaPoint from "../../components/shared/core/sea-point.svelte";
     export let data;
 
-    let troop: any;
+    let troops: any[];
     let store: socketStoreType = useStore(socketStore);
 
     store.connect(data.slug);
     store.socket.on(EmitNames.ConnectGameEmit, (data: GameDataType) => {
         gameStore.set(data);
         if (data.game) {
-            troop = data.troops[0];
+            troops = data.troops;
         }
     });
 
     store.socket.on(EmitNames.MoveTroopEmit_, (data: any) => {
         if (data.position) {
-            troop.position = data.position;
+            console.log(troops);
+            const troop = troops.findIndex((item) => item.id == data.id);
+            const troop_ = troops.find((item) => item.id == data.id);
+            if (troop != -1) {
+                // troops = [
+                // { ...troop, position: data.position },
+                // ...troops.filter((item) => item.id !== data.id),
+                // ];
+                troops[troop] = { ...troop_, position: data.position };
+            }
         }
     });
 </script>
 
 <main>
+    <button
+        onclick={() => {
+            store.socket.emit(EmitNames.CrateEntity, {
+                entity: "troops",
+                payload: [
+                    {
+                        country: 1,
+                        count: 710,
+                        experence: 0.3,
+                        name: "./fortess.svg",
+                        src_img: "axe.svg",
+                        id: 66,
+                        position: {
+                            x: 200,
+                            y: 275,
+                        },
+                    },
+                ],
+                gameId: data.slug,
+            });
+        }}>qwedqwsaed</button
+    >
+    <SeaPoint />
     <Map />
-    <Troop {troop} />
+    {#each troops as troop}
+        <Troop {troop} />
+    {/each}
 </main>

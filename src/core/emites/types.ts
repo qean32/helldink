@@ -4,7 +4,7 @@ import type { positionType } from "../model/core.type"
 export type GameDataType = {
     game: {
         id: number | string,
-        pouse: true
+        pause: true
     },
     troops: Troop[],
     castles: Castle[],
