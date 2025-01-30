@@ -3,7 +3,6 @@ import { EmitNames } from "../src/core/emites"
 
 export const TikFn = (socket: any) => {
     const data = GetGameData(54234342342)
-    const data_ = { ...data }
 
     data.step.troops.forEach((item) => {
         socket.to('54234342342').emit(EmitNames.MoveTroopEmit_, item)
@@ -28,7 +27,5 @@ export const TikFn = (socket: any) => {
         }
     })
 
-    if (data != data_) {
-        WriteGameData(54234342342, data)
-    }
+    WriteGameData(54234342342, data)
 }

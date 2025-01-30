@@ -1,5 +1,5 @@
 <script>
-    import { selectedObjectStore } from "../../store/selectedObj";
+    import { selectedObjectStore } from "../../store/selectedObjecnStore";
 
     let obj;
 

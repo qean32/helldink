@@ -1,5 +1,5 @@
 const createEmitName = (name: string) => {
-    return `name${'Emit'}`
+    return `${name}${'Emit'}`
 }
 
 export const ConnectGameEmit = createEmitName('ConnectGame')
