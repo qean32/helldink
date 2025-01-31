@@ -1,5 +1,5 @@
 import type { Castle, Troop } from "../entities/core.entities"
-import type { positionType } from "../model/core.type"
+import type { positionType } from "../entities/core.type"
 
 export type GameDataType = {
     game: {

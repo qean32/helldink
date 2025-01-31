@@ -1,1 +1,63 @@
-{"game":{"id":54234342342,"pause":true},"troops":[{"country":1,"count":310,"experence":0.3,"name":"./fortess.svg","src_img":"horse.svg","id":661,"position":{"x":1275,"y":225}},{"country":1,"count":310,"experence":0.3,"name":"./fortess.svg","src_img":"deer.svg","id":666,"position":{"x":800,"y":500}},{"country":1,"count":710,"experence":0.3,"name":"./fortess.svg","src_img":"axe.svg","id":66,"position":{"x":525,"y":450}}],"castles":[],"historystep":{"troops":[{"way":[{"x":425,"y":400},{"x":425,"y":425},{"x":450,"y":425},{"x":475,"y":425},{"x":500,"y":425},{"x":500,"y":450},{"x":525,"y":450},{"x":525,"y":475},{"x":550,"y":475},{"x":550,"y":500},{"x":575,"y":500},{"x":600,"y":500},{"x":625,"y":500},{"x":650,"y":500},{"x":650,"y":525},{"x":650,"y":550},{"x":650,"y":575}],"currentStep":7,"idTroop":66},{"way":[{"x":1300,"y":225},{"x":1275,"y":225},{"x":1250,"y":225},{"x":1225,"y":225},{"x":1225,"y":250},{"x":1225,"y":275},{"x":1200,"y":275},{"x":1200,"y":300},{"x":1175,"y":300},{"x":1175,"y":325},{"x":1150,"y":325},{"x":1125,"y":325},{"x":1125,"y":350},{"x":1100,"y":350},{"x":1075,"y":350},{"x":1050,"y":350},{"x":1050,"y":375},{"x":1050,"y":400},{"x":1025,"y":400},{"x":1000,"y":400}],"currentStep":2,"idTroop":661}],"castles":[]},"tiktostop":20}
+{
+    "game": {
+        "id": 54234342342,
+        "pause": true
+    },
+    "lords": [],
+    "troops": [
+        {
+            "country": 1,
+            "count": 310,
+            "experence": 0.3,
+            "name": "./fortess.svg",
+            "src_img": "horse.svg",
+            "id": 661,
+            "position": {
+                "x": 875,
+                "y": 525
+            }
+        },
+        {
+            "country": 1,
+            "count": 310,
+            "experence": 0.3,
+            "name": "./fortess.svg",
+            "src_img": "deer.svg",
+            "id": 666,
+            "position": {
+                "x": 1325,
+                "y": 625
+            }
+        },
+        {
+            "country": 1,
+            "count": 710,
+            "experence": 0.3,
+            "name": "./fortess.svg",
+            "src_img": "axe.svg",
+            "id": 66,
+            "position": {
+                "x": 950,
+                "y": 225
+            }
+        },
+        {
+            "country": 1,
+            "count": 4000,
+            "experence": 0.3,
+            "name": "./fortess.svg",
+            "src_img": "octopus.svg",
+            "id": 52,
+            "position": {
+                "x": 425,
+                "y": 275
+            }
+        }
+    ],
+    "castles": [],
+    "historystep": {
+        "troops": [],
+        "castles": []
+    },
+    "tiktostop": 20
+}

@@ -47,11 +47,11 @@
                 payload: [
                     {
                         country: 1,
-                        count: 710,
+                        count: 4000,
                         experence: 0.3,
                         name: "./fortess.svg",
-                        src_img: "axe.svg",
-                        id: 66,
+                        src_img: "octopus.svg",
+                        id: 52,
                         position: {
                             x: 200,
                             y: 275,

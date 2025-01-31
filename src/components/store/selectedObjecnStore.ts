@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import type { positionType } from "../../core/model/core.type";
+import type { positionType } from "../../core/entities/core.type";
 
 export const selectedObjectStore = writable({})
 export type selectedObjectType = {
