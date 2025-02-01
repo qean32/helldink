@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { selectObj } from "../lib";
+    import { selectObj } from "../../lib";
+
     export let troop;
 </script>
 

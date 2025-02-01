@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { Castle } from "../../core/entities/core.entities";
-    import type { CastleInterface } from "../../core/model/type.payload";
-    import { selectObj } from "../lib";
-    export let castel_: CastleInterface;
+    import { Castle } from ".";
+    import { selectObj } from "../../lib";
+
+    export let castel_;
     const castel = new Castle(castel_);
 </script>
 

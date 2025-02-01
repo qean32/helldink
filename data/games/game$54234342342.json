@@ -3,61 +3,15 @@
         "id": 54234342342,
         "pause": true
     },
-    "lords": [],
-    "troops": [
-        {
-            "country": 1,
-            "count": 310,
-            "experence": 0.3,
-            "name": "./fortess.svg",
-            "src_img": "horse.svg",
-            "id": 661,
-            "position": {
-                "x": 875,
-                "y": 525
-            }
-        },
-        {
-            "country": 1,
-            "count": 310,
-            "experence": 0.3,
-            "name": "./fortess.svg",
-            "src_img": "deer.svg",
-            "id": 666,
-            "position": {
-                "x": 1325,
-                "y": 625
-            }
-        },
-        {
-            "country": 1,
-            "count": 710,
-            "experence": 0.3,
-            "name": "./fortess.svg",
-            "src_img": "axe.svg",
-            "id": 66,
-            "position": {
-                "x": 950,
-                "y": 225
-            }
-        },
-        {
-            "country": 1,
-            "count": 4000,
-            "experence": 0.3,
-            "name": "./fortess.svg",
-            "src_img": "octopus.svg",
-            "id": 52,
-            "position": {
-                "x": 425,
-                "y": 275
-            }
-        }
-    ],
+    "country": [],
+    "troops": [],
     "castles": [],
+    "houses": [],
     "historystep": {
         "troops": [],
-        "castles": []
+        "castles": [],
+        "houses": [],
+        "country": []
     },
     "tiktostop": 20
 }

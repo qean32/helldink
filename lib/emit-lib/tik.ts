@@ -1,7 +1,7 @@
-import { GetGameData, WriteGameData } from "../src/components/lib"
-import { EmitNames } from "../src/core/emites"
+import { EmitNames } from "../../src/core/emites"
 import fs from 'fs'
-import type { GameType } from "../src/core/emites/types"
+import type { GameType } from "../../src/core/emites/types"
+import { GetGameData, WriteGameData } from "../core"
 
 export const TikFn = (socket: any) => {
     const games: GameType[] = JSON.parse(fs.readFileSync('./data/index.json', 'utf-8'))

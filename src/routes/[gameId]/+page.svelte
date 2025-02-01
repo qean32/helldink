@@ -1,39 +1,33 @@
 <script lang="ts">
-    import { useStore } from "../../components/lib/use-store";
     import {
         type socketStoreType,
         gameStore,
         socketStore,
+        useStore,
     } from "../../components/store";
-    import { Troop, Map } from "../../components/ui";
     import { EmitNames } from "../../core/emites";
     import "../../app.css";
-    import type { GameDataType } from "../../core/emites/types";
     import SeaPoint from "../../components/shared/core/sea-point.svelte";
+    import { Troop, Map } from "../../components/shared/ui";
+    import { SetALLGameData } from "../../components/lib/emit-lib";
+    import type { GameDataType } from "../../core/entities/core.entities";
     export let data;
 
     let troops: any[];
     let store: socketStoreType = useStore(socketStore);
-
-    store.connect(data.slug);
-    store.socket.on(EmitNames.ConnectGameEmit, (data: GameDataType) => {
-        gameStore.set(data);
-        if (data.game) {
-            troops = data.troops;
-        }
-    });
+    let game: GameDataType = useStore(gameStore);
+    SetALLGameData(store.socket, data.slug);
 
     store.socket.on(EmitNames.MoveTroopEmit_, (data: any) => {
         if (data.position) {
-            console.log(troops);
-            const troop = troops.findIndex((item) => item.id == data.id);
-            const troop_ = troops.find((item) => item.id == data.id);
+            const troop = game.troops.findIndex((item) => item.id == data.id);
+            const troop_ = game.troops.find((item) => item.id == data.id);
             if (troop != -1) {
                 // troops = [
                 // { ...troop, position: data.position },
                 // ...troops.filter((item) => item.id !== data.id),
                 // ];
-                troops[troop] = { ...troop_, position: data.position };
+                // game.troops[troop] = { ...troop_, position: data.position };
             }
         }
     });
@@ -64,7 +58,7 @@
     >
     <SeaPoint />
     <Map />
-    {#each troops as troop}
+    {#each game.troops as troop}
         <Troop {troop} />
     {/each}
 </main>

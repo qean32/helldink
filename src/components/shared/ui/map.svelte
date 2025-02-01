@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { moveTroop } from "../lib/emit-lib";
+    import { moveTroop } from "../../lib/emit-lib";
+
     export const indexMap: number = 1;
 </script>
 

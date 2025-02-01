@@ -1,6 +1,5 @@
-import { GetGameData } from "../src/components/lib"
-import type { GameType } from "../src/core/emites/types"
-import { EmitNames } from '../src/core/emites/'
+import { EmitNames } from '../../src/core/emites'
+import { GetGameData } from '../core';
 
 export const JoinFn = (socket: any, gameId: string | number) => {
     socket.join(gameId);

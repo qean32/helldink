@@ -1,5 +1,6 @@
-import { GetGameData, road, WriteGameData } from "../src/components/lib"
-import type { MoveTroopTypeEmit } from "../src/core/emites/types"
+import type { MoveTroopTypeEmit } from "../../src/core/emites/types"
+import { GetGameData, road, WriteGameData } from "../core"
+
 
 export const MoveTroopFn = (move: MoveTroopTypeEmit) => {
     if (move) {
