@@ -1,21 +1,24 @@
 <script lang="ts">
-    export let countPoint: number = 0;
+    import { grid } from "./grid";
+    import Point from "./point.svelte";
     export let top: number = 0;
     export let right: number = 0;
-    let arr = [];
-
-    for (let index = 0; index < countPoint; index++) {
-        arr.push(index);
-    }
-
-    import SeaPoint from "./sea-point.svelte";
+    let points: any = grid;
 </script>
 
-<div class="absolute" style="top: {top}rem; right: {right}rem">
-    {#each arr as _, index}
-        <SeaPoint />
+<div
+    class="absolute grid_"
+    style="top: {top}rem; left: {right}rem; padding: 50px"
+>
+    {#each points as point}
+        <Point {point} />
     {/each}
 </div>
 
-<style lang="postcss">
+<style>
+    .grid_ {
+        display: grid;
+        grid-template-columns: repeat(36, 1fr);
+        grid-template-rows: repeat(28, 1fr);
+    }
 </style>

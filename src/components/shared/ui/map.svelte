@@ -8,3 +8,10 @@
 <!-- svelte-ignore a11y_missing_attribute -->
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <img src="./map/map${indexMap}.webp" class="map" onclick={(event: any) => moveTroop(event)} />
+
+<style>
+    .map {
+        width: 1905px;
+        height: 1400px;
+    }
+</style>

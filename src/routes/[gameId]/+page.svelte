@@ -7,10 +7,10 @@
     } from "../../components/store";
     import { EmitNames } from "../../core/emites";
     import "../../app.css";
-    import SeaPoint from "../../components/shared/core/sea-point.svelte";
     import { Troop, Map } from "../../components/shared/ui";
     import { SetALLGameData } from "../../components/lib/emit-lib";
     import type { GameDataType } from "../../core/entities/core.entities";
+    import MorePoint from "../../components/shared/core/more-point.svelte";
     export let data;
 
     let troops: any[];
@@ -34,7 +34,7 @@
 </script>
 
 <main>
-    <button
+    <!-- <button
         onclick={() => {
             store.socket.emit(EmitNames.CrateEntity, {
                 entity: "troops",
@@ -55,8 +55,8 @@
                 gameId: data.slug,
             });
         }}>qwedqwsaed</button
-    >
-    <SeaPoint />
+    > -->
+    <MorePoint />
     <Map />
     {#each game.troops as troop}
         <Troop {troop} />

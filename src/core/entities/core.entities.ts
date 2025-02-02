@@ -11,6 +11,7 @@ export type GameDataType = {
     troops: Troop[],
     castles: Castle[],
     houses: House[],
+    fights: Fight[],
 
     historystep: {
         troops: EmitTypes.MoveEmit[],
@@ -19,6 +20,12 @@ export type GameDataType = {
         country: Country[],
     },
     tiktostop: number
+}
+
+export type Fight = {
+    step: Range1to20,
+    arm_1: Troop[],
+    arm_2: Troop[],
 }
 
 type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] extends N

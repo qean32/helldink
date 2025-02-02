@@ -1,18 +1,56 @@
-const data = {
-    "game": { "id": "", "pouse": true },
-    "troops": [{ "position": { "x": 160, "y": 130 }, "country": 1, "count": 410, "experence": 0.3, "name": "./fortess.svg", "src_img": "deer.svg", "id": 666 }],
-    "castles": [],
-    "historystep": {
-        "troops": [{ "way": [{ "x": 150, "y": 150 }, { "x": 175, "y": 150 }, { "x": 200, "y": 150 }, { "x": 225, "y": 150 }, { "x": 250, "y": 150 }, { "x": 275, "y": 150 }, { "x": 300, "y": 150 }, { "x": 325, "y": 150 }, { "x": 350, "y": 150 }, { "x": 375, "y": 150 }, { "x": 400, "y": 150 }], "currentStep": 5, "idTroop": 666 }],
-        "castles": []
+import { Point } from "./lib/core/a-star";
+
+let grid: Point[] = [
+    {
+        value: 0,
+        position: {
+            x: 1800,
+            y: 50
+        },
+        index: 0,
+        g: 0,
+        h: 0,
+        f: 0,
+        parent: null
     },
-    "step": { "troops": [{ "idTroop": 666, "position": { "x": 275, "y": 150 } }], "castles": [] }
+    {
+        value: 0,
+        position: {
+            x: 1750,
+            y: 50
+        },
+        index: 1,
+        g: 0,
+        h: 0,
+        f: 0,
+        parent: null
+    }
+]
+
+
+function getNeighbors(grid, node): Point[] {
+    const neighbors: Point[] = [];
+    const directions = [
+        { x: 0, y: 50 },  // Вниз
+        { x: 50, y: 0 },  // Вправо
+        { x: 0, y: -50 }, // Вверх
+        { x: -50, y: 0 }  // Влево
+    ];
+
+    for (const dir of directions) {
+        const newX: number = node.position.x + dir.x;
+        const newY: number = node.position.y + dir.y;
+
+        console.log(grid.some((item: Point) => item.position.x == newX && item.position.y == newY))
+        if (grid.some((item: Point) => item.position.x == newX && item.position.y == newY)) {
+            neighbors.push({
+                ...node,
+                position: { x: newX, y: newY }
+            });
+        }
+    }
+
+    return neighbors;
 }
 
-data.step.troops.forEach((item) => {
-    const idTroop = item.idTroop
-    const troop = data.troops.find((item_) => item_.id == idTroop)
-    if (troop) {
-        troop.position = item.position
-    }
-})
+console.log(getNeighbors(grid, grid[0]))

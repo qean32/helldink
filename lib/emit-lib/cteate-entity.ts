@@ -3,7 +3,7 @@ import { GetGameData, WriteGameData } from '../core'
 import type { GameDataType } from '../../src/core/entities/core.entities'
 
 export const CreateEntity = (socket: any, { payload, entity, gameId }: CreateEntityRarams) => {
-    let data: GameDataType = GetGameData()
+    let data: GameDataType = GetGameData(gameId.toString())
     data = {
         ...data,
         [entity]: [
